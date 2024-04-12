@@ -1,0 +1,46 @@
+" Author  : ONJANIAINA Henintsoa Stephana
+" Created : 23/03/24 17:39:18
+" Repo : henintsoa98/dotfiles.debian12
+" File : CONFIG/vimrc
+
+" Default config
+syntax on
+filetype plugin indent on
+set encoding=UTF-8
+
+"KEYMAP
+nnoremap <C-j> :bprevious<CR>
+nnoremap <C-k> :bnext<CR>
+nnoremap <C-_> :NERDTreeToggle<CR>
+"nnoremap <C->:<CR>
+
+" SYNTASTIC
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" rust cheker
+let g:syntastic_rust_checkers = ['rustc']
+
+" AIRLINE
+let g:airline#extensions#tabline#enabled = 1
+
+" NERDTREE
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | wincmd p | endif
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+let NERDTreeQuitOnOpen=1
+
+" FILETYPE
+autocmd BufRead,BufNewFile *.bash set filetype=bash
+
+" LINE NUMBER
+set relativenumber
+set number
+highlight LineNr ctermfg=DarkGrey
+
+" STARTUP CLEAN
+call timer_start(1, {-> execute("redraw!", "")}, {'repeat':1})

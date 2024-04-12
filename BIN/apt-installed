@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Author  : ONJANIAINA Henintsoa Stephana
+# Created : 23/03/24 16:56:03
+# Repo : henintsoa98/hyprland.debian12
+# File : BIN/apt-installed
+
+cd /var/log/apt
+LOGS=$( (zcat history.log.*.gz;cat history.log) | grep -E "Commandline" | grep "install" |sed "s#[a-zA-Z :-]* install##;/Commandline/d;s#^ ##")
+APTS=$(apt list | grep installed | sed "s#/# #" |awk '{print $1}')
+
+for LOG in $LOGS ; do
+	for APT in $APTS ; do
+		if [[ "$APT" == "$LOG" ]]; then
+			echo "$APT"
+		fi
+	done
+done

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Author  : ONJANIAINA Henintsoa Stephana
+# Created : 23/03/24 16:24:25
+# Repo : henintsoa98/dotfiles.debian12
+# File : BIN/hyprland-workspace
+
+WORK=$(hyprctl workspaces |grep ID |awk '{print $3 " "}' |sort |tr -d "\n")
+
+ARRA=$(echo $WORK |awk '{print $2}')
+ARRAN=$(echo $WORK |awk '{print $1}')
+
+if [[ "$ARRA" == "10" || "$ARRAN" == "10" ]]
+then
+	WORK=$(echo $WORK| sed "s/10//")
+	WORK="${WORK} 10"
+fi
+
+ACTI=$(hyprctl monitors |grep "active workspace" |awk '{print $3}')
+
+echo "{\"text\": \"$WORK\"}" |sed "s/$ACTI/<span background='red'> $ACTI <\/span>/"

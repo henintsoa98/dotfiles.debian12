@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Author  : ONJANIAINA Henintsoa Stephana
+# Created : 23/03/24 17:34:12
+# Repo : henintsoa98/dotfiles.debian12
+# File : CONFIG/CUSTOMRC
+
+alias ping8="ping 8.8.8.8"
+alias bye="/sbin/poweroff"
+alias clear="clear -T xterm"
+alias vim="TERM=xterm-256color vim"
+
+github1()
+{
+	git clone --depth 1 https://github.com/$1
+	REPO=$(echo $1 | sed "s#/# #" |awk '{print $2}')
+	tar -cJf ${REPO}_master.tar.xz $REPO
+}
+github0()
+{
+	git clone https://github.com/$1
+	REPO=$(echo $1 | sed "s#/# #" |awk '{print $2}')
+	tar -cJf ${REPO}.tar.xz $REPO
+}
+mytmate()
+{
+	tmate -S /tmp/tmate.sock new-session -d
+	tmate -S /tmp/tmate.sock wait tmate-ready
+	tmate -S /tmp/tmate.sock display -p "#{tmate_ssh}"
+}
+
+
+if [[ "$TTY" == "/dev/tty1" ]]
+then
+        Hyprland
+fi
+sleep 0.5
+echo "WELCOME 😎😈"
