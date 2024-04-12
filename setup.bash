@@ -115,7 +115,7 @@ PARAM ()
 			
 			INSTALL REC tealdeer \(MINIMAL dependencies\) ${BYellow}simplified, example${Reset} based and community-driven ${BYellow}man pages${Reset}
 			
-			INSTALL REC unzip \(MINIMAL dependencies\ ) ${BYellow}De-archiver "for" .zip${Reset} files	
+			INSTALL REC unzip \(MINIMAL dependencies\) ${BYellow}De-archiver "for" .zip${Reset} files	
 			
 			INSTALL REC progress \(MINIMAL dependencies\) Coreutils ${BYellow}Progress Viewer${Resset} \(formerly known as cv\)
 			
