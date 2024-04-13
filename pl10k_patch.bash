@@ -4,4 +4,4 @@
 # File : pl10k_patch.bash
 
 sed -i "s/# battery/battery/" ~/.p10k.zsh
-sed -i "s%typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}%# typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}%" .p10k.zsh
+sed -i "s%typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}%# typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}%" ~/.p10k.zsh
