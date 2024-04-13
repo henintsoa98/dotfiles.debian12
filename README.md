@@ -17,3 +17,8 @@ Just run :
 bash setup.bash
 ```
 If you don't like all of this stuff, you can explore some script or config in BIN, CONFIG.
+# AFTER INSTALLATION
+After installation and setting up zsh correctly, and after getting into zsh, run :
+```bash
+bash pl10k_patch.bash
+```
