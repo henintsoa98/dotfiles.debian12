@@ -81,6 +81,7 @@ PARAM ()
 			vimplug ctrlpvim/ctrlp.vim look
 			vimplug mg979/vim-visual-multi dev
 			vimplug preservim/tagbar dev
+			vimplug preservim/vim-markdown look
 			# RUST
 			vimplug rust-lang/rust.vim rust
 			vimplug vim-syntastic/syntastic rust
