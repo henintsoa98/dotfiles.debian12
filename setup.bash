@@ -97,6 +97,9 @@ PARAM ()
 			echo -e "${BPurple}after running emacs for first time, it will install some package, and wait until it finished."
 			echo -e "exit it and copy CONFIG/doom-henintsoa-theme.el to .emacs.d/elpa/doom-themes-<some date>/"
 			echo -e "<alt-x> customize-themes, and select this theme, and save to next session${Reset}";;
+		"network-manager")
+			INSTALL REC iw \(network-manager dependencies\) tool "for" ${BYellow}configuring${Reset} Linux ${BYellow}wireless devices${Reset}
+			INSTALL REC wireless-tools \(network-manager dependencies\) Tools for manipulating Linux Wireless Extensions
 		"MINIMAL")
 			INSTALL REC alsa-utils \(MINIMAL dependencies\) Utilities "for" configuring and using ${BYellow}ALSA${Reset}
 			
@@ -119,8 +122,6 @@ PARAM ()
 			INSTALL REC unzip \(MINIMAL dependencies\) ${BYellow}De-archiver "for" .zip${Reset} files	
 			
 			INSTALL REC progress \(MINIMAL dependencies\) Coreutils ${BYellow}Progress Viewer${Resset} \(formerly known as cv\)
-			
-			INSTALL zpaq \(MINIMAL dependencies\) maximum reference ${Byellow}compressor${Yellow} "for" ZPAQ open standard
 			;;
 	esac
 }
