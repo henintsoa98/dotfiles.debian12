@@ -36,8 +36,8 @@ PARAM ()
 		"zsh")
 			INSTALL REC git \(zsh dependencies\) fast, scalable, distributed revision control system
 			#oh-my-zsh
-			[[ -f "$HOME/.zshrc" ]] && mv ~/.zshrc ~/.zshrc.backup
-			[[ -d "$HOME/.oh-my-zsh" ]] && rm -rf ~/.oh-my-zsh
+			[[ -f "$HOME/.zshrc" ]] && mv ~/.zshrc ~/.zshrc$DATE
+			[[ -d "$HOME/.oh-my-zsh" ]] && mv ~/.oh-my-zsh ~/.oh-my-zsh$DATE
 			git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 			cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 			#plugins
@@ -50,6 +50,7 @@ PARAM ()
 			sed -i 's#ZSH_THEME="robbyrussell"#ZSH_THEME="powerlevel10k/powerlevel10k"#' $HOME/.zshrc
 			sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting web-search command-not-found dirhistory)/' $HOME/.zshrc
 			chsh -s $(which zsh)
+			[[ -f "$HOME/.CUSTOMRC" ]] && cp ~/.CUSTOMRC ~/.CUSTOMRC$DATE
 			cp CONFIG/CUSTOMRC $HOME/.CUSTOMRC
 			echo "source \$HOME/.CUSTOMRC" >> $HOME/.zshrc;;
 		"vim")
@@ -70,6 +71,8 @@ PARAM ()
 					git clone --depth 1 https://github.com/$LINK ~/.vim/pack/$CLASS/start/$REPO
 				fi
 			}
+			[[ -f "$HOME/.vimrc" ]] && mv ~/.vimrc ~/.vimrc$DATE
+			[[ -d "$HOME/.vim" ]] && mv ~/.vim ~/.vim$DATE
 			mkdir -p .vim/pack
 			cp CONFIG/vimrc $HOME/.vimrc
 			# BASE
@@ -97,7 +100,7 @@ PARAM ()
 			echo -e "<alt-x> customize-themes, and select this theme, and save to next session${Reset}";;
 		"network-manager")
 			INSTALL REC iw \(network-manager dependencies\) tool "for" ${BYellow}configuring${Reset} Linux ${BYellow}wireless devices${Reset}
-			INSTALL REC wireless-tools \(network-manager dependencies\) Tools for manipulating Linux Wireless Extensions
+			INSTALL REC wireless-tools \(network-manager dependencies\) Tools "for" manipulating Linux ${BYellow}Wireless Extensions${Reset};;
 		"MINIMAL")
 			INSTALL REC alsa-utils \(MINIMAL dependencies\) Utilities "for" configuring and using ${BYellow}ALSA${Reset}
 			
@@ -135,20 +138,28 @@ INSTALL ()
 		DES=$(echo "$@" |sed "s/$APP//")
 		REC="${BYellow}>${Reset}"
 	fi
-		
-	echo -ne "${BRed}$APP ${REC}$DES (yn) : ${BRed}"
 
-	read ANS
-	echo -e ${Reset}
-	case $ANS in
-		""|"Y"|"y")
-			if [[ "$APP" == "MINIMAL" ]]; then
-				echo "Go !!!"
-			else
-				sudo apt install $APP
-			fi
-			PARAM $APP;;
-	esac
+	EXIST=$(cat .apt-installed | grep "^$APP$")
+	if [[ "$EXIST" ]]; then
+		echo -e "${BCyan}$APP${Reset} already installed.\n"
+		if [[ "$STATE" == "UPDATE" ]]; then
+			PARAM $APP
+		fi
+	else
+		echo -ne "${BRed}$APP ${REC}$DES (yn) : ${BRed}"
+
+		read ANS
+		echo -e ${Reset}
+		case $ANS in
+			""|"Y"|"y")
+				if [[ "$APP" == "MINIMAL" ]]; then
+					echo "Go !!!"
+				else
+					sudo apt install $APP
+				fi
+				PARAM $APP;;
+		esac
+	fi
 
 }
 
@@ -164,6 +175,11 @@ sudo cp BIN/{wifi,modem,color,apt-installed} $BIN
 sudo chmod +x $BIN/{wifi,modem,color,apt-installed}
 
 apt-installed > .apt-installed
+
+if [[ "$1" == "update" ]]; then
+	STATE="UPDATE"
+fi
+DATE=$(date -u "+%Y_%m_%d_%H_%M")
 
 INSTALL REC kitty fast, featureful, GPU based ${BYellow}terminal emulator${Reset}
 

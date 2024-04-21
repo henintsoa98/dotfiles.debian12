@@ -22,3 +22,7 @@ After installation and setting up zsh correctly, and after getting into zsh, run
 ```bash
 bash pl10k_patch.bash
 ```
+If you want to update config file for zsh, vim, ... , run :
+```bash
+bash setup.bash update
+```
