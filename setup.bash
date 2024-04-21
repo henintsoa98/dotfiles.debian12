@@ -189,6 +189,8 @@ INSTALL REC waybar Highly customizable ${BYellow}Wayland bar${Reset} for Sway an
 
 INSTALL REC grim command-line utility to make ${BYellow}screenshots${Reset} of Wayland desktops
 
+INSTALL REC wf-recorder Utility program "for" ${BYelow}screen recording${Reset} of wlroots-based compositors
+
 INSTALL REC light control ${BYellow}display backlight${Reset} controllers and LEDs
 
 INSTALL REC fonts-noto-color-emoji ${BYellow}color emoji${Reset} font from Google
