@@ -47,8 +47,6 @@ PARAM ()
 			git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 			#theme
 			git clone --depth 1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
-
-
 			sed -i 's#ZSH_THEME="robbyrussell"#ZSH_THEME="powerlevel10k/powerlevel10k"#' $HOME/.zshrc
 			sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting web-search command-not-found dirhistory)/' $HOME/.zshrc
 			chsh -s $(which zsh)
@@ -165,6 +163,8 @@ cd ..
 sudo cp BIN/{wifi,modem,color,apt-installed} $BIN
 sudo chmod +x $BIN/{wifi,modem,color,apt-installed}
 
+apt-installed > .apt-installed
+
 INSTALL REC kitty fast, featureful, GPU based ${BYellow}terminal emulator${Reset}
 
 INSTALL REC wofi ${BYellow}application launcher${Reset} for wlroots based wayland compositors
@@ -200,6 +200,8 @@ INSTALL neofetch Shows Linux ${BYellow}System Information${Reset} with Distribut
 INSTALL emacs GNU Emacs ${BYellow}editor${Reset} \(metapackage\)
 
 INSTALL REC MINIMAL ${BPurple}IMPORTANT PACKAGE \(alsa-utils asciinema command-not-found mdp modemmanager network-manager ssh sshfs vim\)${Reset}
+
+rm -f .apt-installed
 
 echo -e "${BRed}now, launch Hyprland you install this, or run this command again if you forget to install some package"
 echo -e "${BCyan}You can test zsh now\n"
