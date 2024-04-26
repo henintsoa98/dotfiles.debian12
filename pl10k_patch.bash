@@ -3,6 +3,11 @@
 # Repo : henintsoa98/dotfiles.debian12
 # File : pl10k_patch.bash
 
+InsProm=$(cat ~/.zshrc | grep p10k-instant-prompt)
+if [[ "$InsProm" ]]; then
+	sed -i "1,7d" ~/.zshrc
+fi
+
 sed -i "s/# battery/battery/" ~/.p10k.zsh
 sed -i "s%typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}%# typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}%" ~/.p10k.zsh
 sed -i "s%typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=2%typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=7%" ~/.p10k.zsh
