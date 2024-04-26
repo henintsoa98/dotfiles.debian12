@@ -18,8 +18,8 @@ bash setup.bash
 ```
 If you don't like all of this stuff, you can explore some script or config in BIN, CONFIG.
 # AFTER INSTALLATION
-**⚠️With zsh, you can edit an asciiart text in ~/.CUSTOMRC, by editing the text in _HELLOWORD="#> hello <# .henintsoa. _#]* 98 *[#_", and uncommenting the last line⚠️ **
-**⚠️This step is requiered, when displaying ASCII-art⚠️**
+** ⚠️With zsh, you can edit an asciiart text in ~/.CUSTOMRC, by editing the text in _HELLOWORD="#> hello <# .henintsoa. _#]* 98 *[#_", and uncommenting the last line⚠️ ** \
+** ⚠️This step is requiered, when displaying ASCII-art⚠️ **
 After installation and setting up zsh correctly, and after getting into zsh, run :
 ```bash
 bash pl10k_patch.bash
