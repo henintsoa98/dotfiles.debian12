@@ -6,6 +6,7 @@
 # File : CONFIG/CUSTOMRC
 
 source /usr/local/bin/color
+source ~/.p10k.zsh
 
 alias ping8="ping 8.8.8.8"
 alias bye="/sbin/poweroff"
@@ -40,4 +41,4 @@ _HELLOWORD="#> hello <# .henintsoa. _#]* 98 *[#_"
 if [[ "$USER" == "root" ]]; then
 	_HELLOWORD="\!\! WARNING \!\! > ROOT____.. ____USER #"
 fi
-#figlet -f "ANSI Shadow" "$_HELLOWORD" | lolcat -a 12 -s 240
+#figlet -f "ANSI Shadow" "$_HELLOWORD" | lolcat -a -d 12 -s 240
