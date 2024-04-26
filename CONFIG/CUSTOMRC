@@ -5,6 +5,8 @@
 # Repo : henintsoa98/dotfiles.debian12
 # File : CONFIG/CUSTOMRC
 
+source /usr/local/bin/color
+
 alias ping8="ping 8.8.8.8"
 alias bye="/sbin/poweroff"
 alias clear="clear -T xterm"
@@ -30,9 +32,12 @@ mytmate()
 }
 
 
-if [[ "$TTY" == "/dev/tty1" ]]
-then
+if [[ "$TTY" == "/dev/tty1" ]]; then
         Hyprland
 fi
-sleep 0.5
-echo "WELCOME 😎😈"
+
+_HELLOWORD="#> hello <# .henintsoa. _#]* 98 *[#_"
+if [[ "$USER" == "root" ]]; then
+	_HELLOWORD="\!\! WARNING \!\! > ROOT____.. ____USER #"
+fi
+#figlet -f "ANSI Shadow" "$_HELLOWORD" | lolcat -a 12 -s 240

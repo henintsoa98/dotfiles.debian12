@@ -34,7 +34,11 @@ PARAM ()
 		"pcmanfm")
 			INSTALL lxappearance LXDE GTK+ ${BYellow}theme switcher${Reset};;
 		"zsh")
-			INSTALL REC git \(zsh dependencies\) fast, scalable, distributed revision control system
+			INSTALL REC git \(zsh dependencies\) fast, scalable, distributed ${BYelow}revision control system${Reset}
+			INSTALL REC figlet \(zsh dependencies\) Make ${BYellow}large character ASCII banners${Reset} out of ordinary text
+			INSTALL REC lolcat \(zsh dependencies\) ${BYellow}colorful cat${Reset}
+			sudo mkdir -p /usr/share/figlet/
+			sudo cp SOURCE/*.flf /usr/share/figlet/
 			#oh-my-zsh
 			[[ -f "$HOME/.zshrc" ]] && mv ~/.zshrc ~/.zshrc$DATE
 			[[ -d "$HOME/.oh-my-zsh" ]] && mv ~/.oh-my-zsh ~/.oh-my-zsh$DATE
@@ -223,4 +227,5 @@ rm -f .apt-installed
 
 echo -e "${BRed}now, launch Hyprland you install this, or run this command again if you forget to install some package"
 echo -e "${BCyan}You can test zsh now\n"
+echo -e "${Cyan}With zsh, you can edit an asciiart text in ~/.CUSTOMRC, by editing the text in _HELLOWORD=\"${BRed}#> hello <# .henintsoa. _#]* 98 *[#_${Cyan}\", and ${BYellow}uncommenting the last line${Reset}\n"
 echo -e "${BYellow}Have FUN 😉${Reset}"

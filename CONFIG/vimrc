@@ -34,6 +34,9 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 let NERDTreeQuitOnOpen=1
 
+" VIM-MARKDOWN
+let g:vim_markdown_folding_disabled = 1
+
 " FILETYPE
 autocmd BufRead,BufNewFile *.bash set filetype=bash
 
@@ -41,6 +44,10 @@ autocmd BufRead,BufNewFile *.bash set filetype=bash
 set relativenumber
 set number
 highlight LineNr ctermfg=DarkGrey
+
+" CURSOR CENTER
+autocmd CursorMoved * norm zz
+"autocmd CursorMovedI * norm zz
 
 " STARTUP CLEAN
 call timer_start(1, {-> execute("redraw!", "")}, {'repeat':1})
