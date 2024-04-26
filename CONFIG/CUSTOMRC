@@ -6,7 +6,6 @@
 # File : CONFIG/CUSTOMRC
 
 source /usr/local/bin/color
-source ~/.p10k.zsh
 
 alias ping8="ping 8.8.8.8"
 alias bye="/sbin/poweroff"
