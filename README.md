@@ -18,16 +18,7 @@ bash setup.bash
 ```
 If you don't like all of this stuff, you can explore some script or config in BIN, CONFIG.
 # AFTER INSTALLATION
-<<<<<<< HEAD
-⚠️**With zsh, you can edit an asciiart text in ~/.CUSTOMRC, by editing the text in _HELLOWORD="#> hello <# .henintsoa. _#]* 98 *[#_", and uncommenting the last line**⚠️ \
-⚠️**This step is requiered, when displaying ASCII-art**⚠️ \
-After installation and setting up zsh correctly, and after getting into zsh, run :
-```bash
-bash pl10k_patch.bash
-```
-=======
 ** Edit the file **~/.CUSTOMRC** on **_HELLOWORD** to edit the ASCIIART on login text, if you don't like set variable to **_HELLOWORD=""**
->>>>>>> 34dac4d (Update HelloWord)
 If you want to update config file for zsh, vim, ... , run :
 ```bash
 bash setup.bash update
