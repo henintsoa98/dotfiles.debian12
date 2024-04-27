@@ -18,7 +18,7 @@ bash setup.bash
 ```
 If you don't like all of this stuff, you can explore some script or config in BIN, CONFIG.
 # AFTER INSTALLATION
-** Edit the file **~/.CUSTOMRC** on **_HELLOWORD** to edit the ASCIIART on login text, if you don't like set variable to **_HELLOWORD=""** \
+** Edit the file **~/.CUSTOMRC** on **_HELLOWORD** to edit the ASCIIART on login text, if you don't like, set variable to **_HELLOWORD=""** \
 If you want to update config file for zsh, vim, ... , run :
 ```bash
 bash setup.bash update
