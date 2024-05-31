@@ -52,7 +52,7 @@ PARAM ()
 			#theme
 			git clone --depth 1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 			sed -i 's#ZSH_THEME="robbyrussell"#ZSH_THEME="powerlevel10k/powerlevel10k"#' $HOME/.zshrc
-			sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting web-search command-not-found dirhistory)/' $HOME/.zshrc
+			sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting web-search command-not-found dirhistory timer)/' $HOME/.zshrc
 			chsh -s $(which zsh)
 			[[ -f "$HOME/.CUSTOMRC" ]] && cp ~/.CUSTOMRC ~/.CUSTOMRC$DATE
 			cp CONFIG/CUSTOMRC $HOME/.CUSTOMRC
