@@ -112,46 +112,20 @@ get_space () {
 
 _1LEFT="%{$bg[black]$fg[white]%}░▓%{$bg[white]%}$_USERNAME%{$reset_color%}%{$bg[cyan]%}$_PATH%{$bg[black]$fg[cyan]%}▓░%{$reset_color%}"
 #_1RIGHT="[%*]"
-_1RIGHT_A="%{$bg[black]$fg[cyan]%}░▓"
+_1RIGHT_A="%{$bg[black]$fg[cyan]%}░▓%{$bg[cyan]$fg_bold[black]%}"
 _1RIGHT_B="%{$bg[yellow]$fg_bold[black]%} %l %{$bg[black]$fg[yellow]%}▓░%{$reset_color%}"
 
 DAATA='%l'
 
 bureau_precmd () {
-
-_ZSH_BAT_CAP=$(cat /sys/class/power_supply/*/capacity)
-_ZSH_BAT_STAT=$(cat /sys/class/power_supply/*/status)
-[[ $_ZSH_BAT_CAP -ge 0 && $_ZSH_BAT_CAP -lt 10 && "$_ZSH_BAT_STAT" == "Discharging" ]] && _ZSH_BAT_PRE="󰂎 "
-[[ $_ZSH_BAT_CAP -ge 10 && $_ZSH_BAT_CAP -lt 20 && "$_ZSH_BAT_STAT" == "Discharging" ]] && _ZSH_BAT_PRE="󰁺 "
-[[ $_ZSH_BAT_CAP -ge 20 && $_ZSH_BAT_CAP -lt 30 && "$_ZSH_BAT_STAT" == "Discharging" ]] && _ZSH_BAT_PRE="󰁻 "
-[[ $_ZSH_BAT_CAP -ge 30 && $_ZSH_BAT_CAP -lt 40 && "$_ZSH_BAT_STAT" == "Discharging" ]] && _ZSH_BAT_PRE="󰁼 "
-[[ $_ZSH_BAT_CAP -ge 40 && $_ZSH_BAT_CAP -lt 50 && "$_ZSH_BAT_STAT" == "Discharging" ]] && _ZSH_BAT_PRE="󰁽 "
-[[ $_ZSH_BAT_CAP -ge 50 && $_ZSH_BAT_CAP -lt 60 && "$_ZSH_BAT_STAT" == "Discharging" ]] && _ZSH_BAT_PRE="󰁾 "
-[[ $_ZSH_BAT_CAP -ge 60 && $_ZSH_BAT_CAP -lt 70 && "$_ZSH_BAT_STAT" == "Discharging" ]] && _ZSH_BAT_PRE="󰁿 "
-[[ $_ZSH_BAT_CAP -ge 70 && $_ZSH_BAT_CAP -lt 80 && "$_ZSH_BAT_STAT" == "Discharging" ]] && _ZSH_BAT_PRE="󰂀 "
-[[ $_ZSH_BAT_CAP -ge 80 && $_ZSH_BAT_CAP -lt 90 && "$_ZSH_BAT_STAT" == "Discharging" ]] && _ZSH_BAT_PRE="󰂁 "
-[[ $_ZSH_BAT_CAP -ge 90 && $_ZSH_BAT_CAP -lt 100 && "$_ZSH_BAT_STAT" == "Discharging" ]] && _ZSH_BAT_PRE="󰂂 "
-[[ $_ZSH_BAT_CAP -eq 100 && "$_ZSH_BAT_STAT" == "Discharging" ]] && _ZSH_BAT_PRE="󰁹"
-[[ $_ZSH_BAT_CAP -ge 0 && $_ZSH_BAT_CAP -lt 10 && "$_ZSH_BAT_STAT" == "Charging" ]] && _ZSH_BAT_PRE="󰢟 "
-[[ $_ZSH_BAT_CAP -ge 10 && $_ZSH_BAT_CAP -lt 20 && "$_ZSH_BAT_STAT" == "Charging" ]] && _ZSH_BAT_PRE="󰢜 "
-[[ $_ZSH_BAT_CAP -ge 20 && $_ZSH_BAT_CAP -lt 30 && "$_ZSH_BAT_STAT" == "Charging" ]] && _ZSH_BAT_PRE="󰂆 "
-[[ $_ZSH_BAT_CAP -ge 30 && $_ZSH_BAT_CAP -lt 40 && "$_ZSH_BAT_STAT" == "Charging" ]] && _ZSH_BAT_PRE="󰂇 "
-[[ $_ZSH_BAT_CAP -ge 40 && $_ZSH_BAT_CAP -lt 50 && "$_ZSH_BAT_STAT" == "Charging" ]] && _ZSH_BAT_PRE="󰂈 "
-[[ $_ZSH_BAT_CAP -ge 50 && $_ZSH_BAT_CAP -lt 60 && "$_ZSH_BAT_STAT" == "Charging" ]] && _ZSH_BAT_PRE="󰢝 "
-[[ $_ZSH_BAT_CAP -ge 60 && $_ZSH_BAT_CAP -lt 70 && "$_ZSH_BAT_STAT" == "Charging" ]] && _ZSH_BAT_PRE="󰂉 "
-[[ $_ZSH_BAT_CAP -ge 70 && $_ZSH_BAT_CAP -lt 80 && "$_ZSH_BAT_STAT" == "Charging" ]] && _ZSH_BAT_PRE="󰢞 "
-[[ $_ZSH_BAT_CAP -ge 80 && $_ZSH_BAT_CAP -lt 90 && "$_ZSH_BAT_STAT" == "Charging" ]] && _ZSH_BAT_PRE="󰂊 "
-[[ $_ZSH_BAT_CAP -ge 90 && $_ZSH_BAT_CAP -lt 100 && "$_ZSH_BAT_STAT" == "Charging" ]] && _ZSH_BAT_PRE="󰂋 "
-[[ $_ZSH_BAT_CAP -eq 100 && "$_ZSH_BAT_STAT" == "Charging" ]] && _ZSH_BAT_PRE="󰂅"
-
-_ZSH_BAT="%{$bg[cyan]$fg_bold[black]%} $_ZSH_BAT_PRE$_ZSH_BAT_CAP%% %{$reset_color%}"
- _1SPACES=`get_space ------$_1LEFT$_1RIGHT_A$_1RIGHT_B`
-
-
-[[ "$_ZSH_BAT_CAP" == "" ]] && _ZSH_BAT="" && _1RIGHT_A="%{$bg[black]$fg[yellow]%}░▓" && _1SPACES=`get_space $_1LEFT$_1RIGHT_A$_1RIGHT_B`
-
+  _ZSH_BAT_STAT=$(acpi 2> /dev/null | awk '{print $3}' |sed "s/,//")
+  _ZSH_BAT_LEV=$(acpi 2> /dev/null | awk '{print $4}' |sed "s/%,//")
+  [[ "$_ZSH_BAT_LEV" ]] && _ZSH_BAT_LEVEL=" ${_ZSH_BAT_LEV}%% " || _ZSH_BAT_LEVEL="∞ "
+  [[ "$_ZSH_BAT_STAT" == "Charging" ]] && _ZSH_BAT_PRE=" ↑" || _ZSH_BAT_PRE=" "
+  [[ "$_ZSH_BAT_STAT" == "Discharging" ]] && _ZSH_BAT_PRE=" ↓"
+ _1SPACES=`get_space $_1LEFT$_1RIGHT_A$_ZSH_BAT_PRE$_ZSH_BAT_LEVEL$_1RIGHT_B`
   print
-  print -rP "$_1LEFT%{$fg_bold[yellow]%}$_1SPACES$_1RIGHT_A$_ZSH_BAT$_1RIGHT_B"
+  print -rP "$_1LEFT${_1SPACES}─$_1RIGHT_A$_ZSH_BAT_PRE$_ZSH_BAT_LEVEL$_1RIGHT_B"
 }
 
 _STAT="%(?:%{$fg_bold[green]%}$_LIBERTY > :%{$fg_bold[red]%}$_LIBERTY > )%{$reset_color%}"
