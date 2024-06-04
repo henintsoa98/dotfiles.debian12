@@ -8,7 +8,7 @@
 source /usr/local/bin/color
 clear -x
 # POWERLEVEL SETUP
-InsProm=$(cat ~/.zshrc | grep p10k-instant-prompt);if [[ "$InsProm" ]];then sed -i "1,7d" ~/.zshrc;fi;sed -i "s/# battery/battery/;s%  typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}%# typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}%;s%typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=2%typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=7%;s%typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND=0%typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND=4%;s%typeset -g POWERLEVEL9K_STATUS_OK_PIPE_FOREGROUND=2%typeset -g POWERLEVEL9K_STATUS_OK_PIPE_FOREGROUND=7%;s%typeset -g POWERLEVEL9K_STATUS_OK_PIPE_BACKGROUND=0%typeset -g POWERLEVEL9K_STATUS_OK_PIPE_BACKGROUND=4%" ~/.p10k.zsh
+[ -f "~/.p10k.zsh" ] && (InsProm=$(cat ~/.zshrc | grep p10k-instant-prompt);if [[ "$InsProm" ]];then sed -i "1,7d" ~/.zshrc;fi;sed -i "s/# battery/battery/;s%  typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}%# typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}%;s%typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=2%typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=7%;s%typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND=0%typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND=4%;s%typeset -g POWERLEVEL9K_STATUS_OK_PIPE_FOREGROUND=2%typeset -g POWERLEVEL9K_STATUS_OK_PIPE_FOREGROUND=7%;s%typeset -g POWERLEVEL9K_STATUS_OK_PIPE_BACKGROUND=0%typeset -g POWERLEVEL9K_STATUS_OK_PIPE_BACKGROUND=4%" ~/.p10k.zsh)
 
 alias ping8="ping 8.8.8.8"
 alias bye="/sbin/poweroff"
