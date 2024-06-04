@@ -34,6 +34,8 @@ PARAM ()
 		"pcmanfm")
 			INSTALL lxappearance LXDE GTK+ ${BYellow}theme switcher${Reset};;
 		"zsh")
+			INSTALL REC acpi \(zsh dependencies\) displays ${BYellow}information on ACPI${Reset} devices
+
 			INSTALL REC git \(zsh dependencies\) fast, scalable, distributed ${BYelow}revision control system${Reset}
 			INSTALL REC figlet \(zsh dependencies\) Make ${BYellow}large character ASCII banners${Reset} out of ordinary text
 			INSTALL REC lolcat \(zsh dependencies\) ${BYellow}colorful cat${Reset}
@@ -194,6 +196,8 @@ if [[ "$1" == "update" ]]; then
 fi
 DATE=$(date -u "+%Y_%m_%d_%H_%M")
 
+INSTALL REC zsh ${BYellow}shell${Reset} with lots of features
+
 INSTALL REC kitty fast, featureful, GPU based ${BYellow}terminal emulator${Reset}
 
 INSTALL REC wofi ${BYellow}application launcher${Reset} for wlroots based wayland compositors
@@ -221,8 +225,6 @@ INSTALL REC swaybg ${BYellow}Wallpaper${Reset} utility "for" Wayland compositors
 INSTALL gdu Pretty fast ${BYellow}disk usage analyzer${Reset}
 
 INSTALL REC gparted GNOME ${BYellow}partition editor${Reset}
-
-INSTALL REC zsh ${BYellow}shell${Reset} with lots of features
 
 INSTALL REC vim Vi IMproved - ${BYellow}enhanced vi editor${Reset}
 
