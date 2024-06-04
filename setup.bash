@@ -40,22 +40,31 @@ PARAM ()
 			sudo mkdir -p /usr/share/figlet/
 			sudo cp SOURCE/*.flf /usr/share/figlet/
 			#oh-my-zsh
-			[[ -f "$HOME/.zshrc" ]] && mv ~/.zshrc ~/.zshrc$DATE
-			[[ -d "$HOME/.oh-my-zsh" ]] && mv ~/.oh-my-zsh ~/.oh-my-zsh$DATE
-			git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-			cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+			[[ -f "$HOME/.zshrc" ]] && mv $HOME/.zshrc $HOME/.zshrc$DATE
+			[[ -d "$HOME/.oh-my-zsh" ]] && mv $HOME/.oh-my-zsh $HOME/.oh-my-zsh$DATE
+			git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
+			cp $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc
 			#plugins
-			git clone --depth 1 https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
-			sed -i 's#source#fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src\nsource#' ~/.zshrc
-			git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-			git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+			git clone --depth 1 https://github.com/zsh-users/zsh-completions $HOME/.oh-my-zsh/custom/plugins/zsh-completions
+			sed -i 's#source#fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src\nsource#' $HOME/.zshrc
+			git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+			git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 			#theme
-			git clone --depth 1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
-			sed -i 's#ZSH_THEME="robbyrussell"#ZSH_THEME="powerlevel10k/powerlevel10k"#' $HOME/.zshrc
+			git clone --depth 1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k
+			echo -ne "${BRed}Select theme [1|powerlevel|'default'|Y|y or 2|henintsoa|'other' ] : ${BRed}"
+			read ANS
+			echo -e ${Reset}
+			case $ANS in
+				""|"Y"|"y"|"powerlevel"|"default"|"1")
+					sed -i 's#ZSH_THEME="robbyrussell"#ZSH_THEME="powerlevel10k/powerlevel10k"#' $HOME/.zshrc;;
+				*)
+					sed -i 's#ZSH_THEME="robbyrussell"#ZSH_THEME="bureau-henintsoa"#' $HOME/.zshrc;;
+			esac
 			sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-completions zsh-syntax-highlighting web-search command-not-found dirhistory timer)/' $HOME/.zshrc
 			chsh -s $(which zsh)
-			[[ -f "$HOME/.CUSTOMRC" ]] && cp ~/.CUSTOMRC ~/.CUSTOMRC$DATE
+			[[ -f "$HOME/.CUSTOMRC" ]] && cp $HOME/.CUSTOMRC $HOME/.CUSTOMRC$DATE
 			cp CONFIG/CUSTOMRC $HOME/.CUSTOMRC
+			cp CONFIG/bureau-henintsoa.zsh-theme $HOME/.oh-my-zsh/custom/themes/
 			echo "source \$HOME/.CUSTOMRC" >> $HOME/.zshrc;;
 		"vim")
 			vimplug ()
@@ -72,12 +81,12 @@ PARAM ()
 				if [ -d "$DIR" ]; then
 					echo "$REPO already exist in $CLASS"
 				else
-					git clone --depth 1 https://github.com/$LINK ~/.vim/pack/$CLASS/start/$REPO
+					git clone --depth 1 https://github.com/$LINK $HOME/.vim/pack/$CLASS/start/$REPO
 				fi
 			}
-			[[ -f "$HOME/.vimrc" ]] && mv ~/.vimrc ~/.vimrc$DATE
-			[[ -d "$HOME/.vim" ]] && mv ~/.vim ~/.vim$DATE
-			mkdir -p .vim/pack
+			[[ -f "$HOME/.vimrc" ]] && mv $HOME/.vimrc $HOME/.vimrc$DATE
+			[[ -d "$HOME/.vim" ]] && mv $HOME/.vim $HOME/.vim$DATE
+			mkdir -p $HOME/.vim/pack
 			cp CONFIG/vimrc $HOME/.vimrc
 			# BASE
 			vimplug vim-airline/vim-airline look
@@ -227,5 +236,8 @@ rm -f .apt-installed
 
 echo -e "${BRed}now, launch Hyprland you install this, or run this command again if you forget to install some package"
 echo -e "${BCyan}You can test zsh now\n"
-echo -e "${Cyan}With zsh, you can edit an asciiart text in ~/.CUSTOMRC, by editing the text in _HELLOWORD=\"${BRed}#> hello <# .henintsoa. _#]* 98 *[#_${Cyan}\", and ${BYellow}uncommenting the last line${Reset}\n"
+echo -e "${BRed}This setup come with some command located at /usr/local/bin"
+echo -e "${BRed}You can switch terminal theme between powerlevel and my theme by using zsh_switch_theme"
+echo -e "${BRed}You can use other command inside ~/.CUSTOMRC, like github1, github0, mytmate"
+echo -e "${Cyan}With zsh, you can edit an asciiart text in ~/.CUSTOMRC, by editing the text in _HELLOWORD=\"${BRed}#> hello <# .henintsoa. _#]* 98 *[#_${Cyan}\", or ${BYellow}set it to _HELLOWORD=\"\", if you don't want this asciiart${Reset}\n"
 echo -e "${BYellow}Have FUN 😉${Reset}"

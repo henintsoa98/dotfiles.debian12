@@ -19,26 +19,51 @@ alias "wq!"="/sbin/poweroff"
 
 github1()
 {
-	git clone --depth 1 https://github.com/$1
-	REPO=$(echo $1 | sed "s#/# #" |awk '{print $2}')
-	tar -cJf ${REPO}_master.tar.xz $REPO
+	if [[ "$1" ]]; then
+		git clone --depth 1 https://github.com/$1
+		REPO=$(echo $1 | sed "s#/# #" |awk '{print $2}')
+		tar -cJf ${REPO}_master.tar.xz $REPO
+	else
+		echo "Usage with user/repo : github1 henintsoa98/resume"
+	fi
 }
 github0()
 {
-	git clone https://github.com/$1
-	REPO=$(echo $1 | sed "s#/# #" |awk '{print $2}')
-	tar -cJf ${REPO}.tar.xz $REPO
+	if [[ "$1" ]]; then
+		git clone https://github.com/$1
+		REPO=$(echo $1 | sed "s#/# #" |awk '{print $2}')
+		tar -cJf ${REPO}.tar.xz $REPO
+
+	else
+		echo "Usage with user/repo : github0 henintsoa98/resume"
+	fi
 }
 mytmate()
 {
 	tmate -S /tmp/tmate.sock new-session -d
 	tmate -S /tmp/tmate.sock wait tmate-ready
 	tmate -S /tmp/tmate.sock display -p "#{tmate_ssh}"
+	if [[ "$1" ]]; then
+		tmate -S /tmp/tmate.sock display -p "#{tmate_ssh}"
+	fi
 }
 
+zsh_switch_theme()
+{
+	IS_POWERLEVEL10K=$(grep "powerlevel10k" $HOME/.zshrc)
+	if [[ "IS_POWERLEVEL10K" ]] ; then
+		sed -i 's#ZSH_THEME="powerlevel10k/powerlevel10k"#ZSH_THEME="bureau-henintsoa"#' $HOME/.zshrc
+	else
+		sed -i 's#ZSH_THEME="bureau-henintsoa"#ZSH_THEME="powerlevel10k/powerlevel10k"#' $HOME/.zshrc
+	fi
+	zsh
+}
+
+TIMER_FORMAT='[%d]';
 
 if [[ "$TTY" == "/dev/tty1" ]]; then
         Hyprland
+	# tmux
 fi
 
 _HELLOWORD="#> hello <# .henintsoa. _#]* 98 *[#_"
