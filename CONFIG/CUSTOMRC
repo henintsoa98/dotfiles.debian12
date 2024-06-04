@@ -51,7 +51,7 @@ mytmate()
 zsh_switch_theme()
 {
 	IS_POWERLEVEL10K=$(grep "powerlevel10k" $HOME/.zshrc)
-	if [[ "IS_POWERLEVEL10K" ]] ; then
+	if [[ "$IS_POWERLEVEL10K" ]] ; then
 		sed -i 's#ZSH_THEME="powerlevel10k/powerlevel10k"#ZSH_THEME="bureau-henintsoa"#' $HOME/.zshrc
 	else
 		sed -i 's#ZSH_THEME="bureau-henintsoa"#ZSH_THEME="powerlevel10k/powerlevel10k"#' $HOME/.zshrc
